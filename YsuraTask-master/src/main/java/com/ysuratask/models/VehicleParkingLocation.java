@@ -1,25 +1,16 @@
 package com.ysuratask.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Created by NrapendraKumar on 21-03-2016.
  */
+
+
+@Getter
+@Setter
 public class VehicleParkingLocation {
     private int levelNumber;
     private int parkingLotNumber;
-
-    public long getLevelNumber() {
-        return levelNumber;
-    }
-
-    public void setLevelNumber(int levelNumber) {
-        this.levelNumber = levelNumber;
-    }
-
-    public long getParkingLotNumber() {
-        return parkingLotNumber;
-    }
-
-    public void setParkingLotNumber(int parkingLotNumber) {
-        this.parkingLotNumber = parkingLotNumber;
-    }
 }

@@ -1,26 +1,16 @@
 package com.ysuratask.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Created by NrapendraKumar on 25-03-2016.
  */
+@Setter
+@Getter
 public class FreeParkingGarageSpace {
 
     private int noOfFreeParkingLot;
     private String parkingSpaceStatus;
 
-    public int getNoOfFreeParkingLot() {
-        return noOfFreeParkingLot;
-    }
-
-    public void setNoOfFreeParkingLot(int noOfFreeParkingLot) {
-        this.noOfFreeParkingLot = noOfFreeParkingLot;
-    }
-
-    public String getParkingSpaceStatus() {
-        return parkingSpaceStatus;
-    }
-
-    public void setParkingSpaceStatus(String parkingSpaceStatus) {
-        this.parkingSpaceStatus = parkingSpaceStatus;
-    }
 }

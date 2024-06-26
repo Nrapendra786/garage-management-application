@@ -1,6 +1,9 @@
 package com.ysuratask.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +12,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "parkingvehiclelocation")
+@Setter
+@Getter
 public class ParkingVehicleLocation implements Serializable {
 
     @Id
@@ -21,28 +26,4 @@ public class ParkingVehicleLocation implements Serializable {
 
     @Column(name = "level_number")
     private Integer levelNumber;
-
-    public Integer getParkingVehicleLocationId() {
-        return parkingVehicleLocationId;
-    }
-
-    public void setParkingVehicleLocationId(Integer parkingVehicleLocationId) {
-        this.parkingVehicleLocationId = parkingVehicleLocationId;
-    }
-
-    public Integer getVehicleLocationLotNumber() {
-        return vehicleLocationLotNumber;
-    }
-
-    public void setVehicleLocationLotNumber(Integer vehicleLocationLotNumber) {
-        this.vehicleLocationLotNumber = vehicleLocationLotNumber;
-    }
-
-    public Integer getLevelNumber() {
-        return levelNumber;
-    }
-
-    public void setLevelNumber(Integer levelNumber) {
-        this.levelNumber = levelNumber;
-    }
 }

@@ -16,11 +16,11 @@ import java.util.Map;
 @Service
 public interface GarageService {
 
-    public VehicleMovementStatus addVehicle(Vehicle vehicle) throws IOException, ParseException;
+     VehicleMovementStatus addVehicle(Vehicle vehicle) throws IOException, ParseException;
 
-    public VehicleMovementStatus removeVehicle(String vehicleId) throws IOException, ParseException;
+     VehicleMovementStatus removeVehicle(String vehicleId) throws IOException, ParseException;
 
-    public VehicleParkingLocation getVehicleParkingLocation(String vehicleId) throws ParseException, FileException;
+     VehicleParkingLocation getVehicleParkingLocation(String vehicleId) throws ParseException, FileException;
 
-    public FreeParkingGarageSpace getFreeParkingLotsInformation() throws FileException, ParseException;
+     FreeParkingGarageSpace getFreeParkingLotsInformation() throws FileException, ParseException;
 }

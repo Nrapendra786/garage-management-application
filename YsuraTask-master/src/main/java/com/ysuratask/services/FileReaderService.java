@@ -10,6 +10,6 @@ import java.util.List;
  * Created by NrapendraKumar on 20-03-2016.
  */
 @Service
-public interface FileReaderService<T> {
-    public List<T> read() throws FileException, ParseException;
+ interface FileReaderService<T> {
+     List<T> read() throws FileException, ParseException;
 }

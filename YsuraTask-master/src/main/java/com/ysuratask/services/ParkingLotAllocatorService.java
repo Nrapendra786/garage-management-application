@@ -1,17 +1,17 @@
-package com.ysuratask.helpers;
+package com.ysuratask.services;
 
 import com.ysuratask.entities.ParkingVehicleLocation;
 import com.ysuratask.entities.VehicleInformation;
 import com.ysuratask.exceptions.FileException;
 import com.ysuratask.models.GarageSpaceInformation;
 import com.ysuratask.repositories.ParkingVehicleLocationRespository;
-import com.ysuratask.services.FileReaderService;
 import com.ysuratask.utils.AppUtil;
 import com.ysuratask.utils.NumberUtil;
-import org.apache.log4j.Logger;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +22,11 @@ import java.util.List;
  */
 
 @Component
-public class ParkingLotAllocator {
+@Slf4j
+@AllArgsConstructor
+public class ParkingLotAllocatorService {
 
-    private static final Logger logger = Logger.getLogger(ParkingLotAllocator.class.getName());
-
-    @Autowired
+    //@Autowired
     private FileReaderService garageSpaceInfoFileReaderService;
 
     @Autowired
@@ -52,9 +52,8 @@ public class ParkingLotAllocator {
     }
 
     private int getFilledPositionByVehicle(int levelNo){
-        int filledPosition = (int)parkingVehicleLocationRespository.findAll().
+        return (int)parkingVehicleLocationRespository.findAll().
                               stream().filter((ParkingVehicleLocation p) -> p.getLevelNumber() == levelNo).count();
-        return filledPosition;
     }
 
     private boolean isFreeSpaceAvailableInGarage(int spaceForNoOfVehicle,int filledPositionByVehicle,int leveleNo) {

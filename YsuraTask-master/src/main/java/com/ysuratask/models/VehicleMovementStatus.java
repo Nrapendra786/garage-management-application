@@ -1,5 +1,7 @@
 package com.ysuratask.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 /**
@@ -7,15 +9,8 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Setter
+@Getter
 public class VehicleMovementStatus {
-
     private String status;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

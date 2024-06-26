@@ -1,9 +1,9 @@
 package com.ysuratask.services;
+
 import com.ysuratask.entities.ParkingVehicleLocation;
 import com.ysuratask.entities.VehicleInformation;
 import com.ysuratask.exceptions.FileException;
 import com.ysuratask.exceptions.NotFoundException;
-import com.ysuratask.helpers.ParkingLotAllocator;
 import com.ysuratask.models.*;
 import com.ysuratask.repositories.ParkingVehicleLocationRespository;
 import com.ysuratask.repositories.VehicleRepository;
@@ -14,12 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.stream.Collector;
-
-import static java.util.stream.Collectors.summingInt;
 
 /**
  * Created by NrapendraKumar on 20-03-2016.
@@ -45,7 +43,7 @@ public class GarageServiceImpl implements GarageService {
     private ConverterService vehicleParkingLocationConverterService;
 
     @Autowired
-    private ParkingLotAllocator parkingLotAllocator;
+    private ParkingLotAllocatorService parkingLotAllocatorService;
 
     @Autowired
     private FileReaderService garageSpaceFileReaderServiceImpl;
@@ -57,7 +55,7 @@ public class GarageServiceImpl implements GarageService {
     public VehicleMovementStatus addVehicle(Vehicle vehicle) throws IOException, ParseException {
         String vehicleNumber = vehicle.getVehicleNumber();
         if(isVehicleAlreadyExist(vehicleNumber)) {
-            ParkingVehicleLocation parkingVehicleLocation = parkingLotAllocator.allocateParkingLot();
+            ParkingVehicleLocation parkingVehicleLocation = parkingLotAllocatorService.allocateParkingLot();
             if (parkingVehicleLocation == null) {
                 vehicleMovementStatus.setStatus(AppUtil.NO_SPACE_FOR_VEHICLE_IN_GARAGE);
             } else {
@@ -89,7 +87,7 @@ public class GarageServiceImpl implements GarageService {
         if (vehicleInformation == null) {
             throw new NotFoundException(AppUtil.VEHICLE_DOES_NOT_EXIST);
         }
-        ParkingVehicleLocation parkingVehicleLocation = vehicleInformation.getParkingVehicleLocation();
+        ParkingVehicleLocation parkingVehicleLocation = vehicleInformation.getVehicleParkingLocation();
         VehicleParkingLocation vehicleParkingLocation = (VehicleParkingLocation) vehicleParkingLocationConverterService.convert(parkingVehicleLocation);
         return vehicleParkingLocation;
     }
@@ -115,7 +113,7 @@ public class GarageServiceImpl implements GarageService {
         List<GarageSpaceInformation> garageSpaceInformationList =  garageSpaceFileReaderServiceImpl.read();
         int noOfOccupiedSpacesInGarage = NumberUtil.ZERO;
         for(GarageSpaceInformation garageSpaceInformation : garageSpaceInformationList) {
-            noOfOccupiedSpacesInGarage += parkingVehicleLocations.stream().filter
+            noOfOccupiedSpacesInGarage += (int) parkingVehicleLocations.stream().filter
                                           ((ParkingVehicleLocation parkingVehicleLocation) -> parkingVehicleLocation.getLevelNumber().
                                            equals(garageSpaceInformation.getNoOfLevels())).count();
         }
@@ -131,7 +129,6 @@ public class GarageServiceImpl implements GarageService {
     }
 
     private boolean isVehicleAlreadyExist(String vehicleNumber) {
-        VehicleInformation vehicleInformation = vehicleRepository.findByVehicleNumber(vehicleNumber);
-        return vehicleInformation != null ?  false : true;
+        return vehicleRepository.findByVehicleNumber(vehicleNumber) == null ;
     }
 }

@@ -2,9 +2,10 @@ package com.ysuratask.entities;
 
 import com.ysuratask.enums.VehicleType;
 import com.ysuratask.utils.AppUtil;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,6 +15,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "vehicleinformation")
+@Getter
+@Setter
 public class VehicleInformation implements Serializable {
 
     @Id
@@ -33,45 +36,5 @@ public class VehicleInformation implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "vehicle_parking_location_id", referencedColumnName = "parking_vehicle_location_id")
-    private ParkingVehicleLocation vehicleParkingLocationId;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getVehicleNumber() {
-        return vehicleNumber;
-    }
-
-    public void setVehicleNumber(String vehicleNumber) {
-        this.vehicleNumber = vehicleNumber;
-    }
-
-    public VehicleType getVehicleType() {
-        return vehicleType;
-    }
-
-    public void setVehicleType(VehicleType vehicleType) {
-        this.vehicleType = vehicleType;
-    }
-
-    public Date getVehicleEnterDate() {
-        return vehicleEnterDate;
-    }
-
-    public void setVehicleEnterDate(Date vehicleEnterDate) {
-        this.vehicleEnterDate = vehicleEnterDate;
-    }
-
-    public ParkingVehicleLocation getParkingVehicleLocation() {
-        return vehicleParkingLocationId;
-    }
-
-    public void setParkingVehicleLocation(ParkingVehicleLocation vehicleParkingLocationId) {
-        this.vehicleParkingLocationId = vehicleParkingLocationId;
-    }
+    private ParkingVehicleLocation vehicleParkingLocation;
 }
