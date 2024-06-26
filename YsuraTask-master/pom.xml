@@ -4,20 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.ysuratask</groupId>
-    <artifactId>YsuraTask</artifactId>
+    <groupId>com.nrapendra</groupId>
+    <artifactId>GarageManagementApplication</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.1</version>
     </parent>
 
     <properties>
         <java.version>17</java.version>
         <spring.test.version>4.2.3.RELEASE</spring.test.version>
         <jackson.mapper.asl.version>1.7.1</jackson.mapper.asl.version>
+        <mysql-version>8.2.0</mysql-version>
+        <joda-time-version>2.8.1</joda-time-version>
     </properties>
 
     <dependencies>
@@ -37,6 +39,7 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql-version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -46,12 +49,17 @@
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.8.1</version>
+            <version>${joda-time-version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
