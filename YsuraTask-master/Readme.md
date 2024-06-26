@@ -2,7 +2,7 @@ I wrote this service in some time ago and purpose of this Service was to
 create a Garage Management System. I updated this service with Spring boot 3.2.1 
 and updated some spring security features.
 
-Functionalities are as follows:
+Functionalities of this service are as follows:
 1) Types of vehicle can enter into the garage for example CAR and Motorbike
 2) Number Of Floors available in a Garage
 3) Roles based authentication for example USER and MANAGER
