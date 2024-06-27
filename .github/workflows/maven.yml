@@ -27,8 +27,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Make Maven wrapper executable
+      run: chmod +x mvnw    
     - name: Build with Maven
-       chmod 644 /path/to/pom.xml
       run: mvn -B package --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
