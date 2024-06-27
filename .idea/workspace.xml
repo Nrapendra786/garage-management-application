@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0ec4fd3a-9274-4f14-8b74-391cddc24e10" name="Changes" comment=" Added h2-db and Written Integration Test for">
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/GarageApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/configs/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/controllers/GarageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/entities/ParkingVehicleLocation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/entities/VehicleInformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/enums/VehicleType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/exceptions/FileException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/exceptions/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/models/FreeParkingGarageSpace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/models/GarageSpaceInformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/models/Vehicle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/models/VehicleMovementStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/models/VehicleParkingLocation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/repositories/ParkingVehicleLocationRespository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/repositories/VehicleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/ConverterService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/FileReaderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/GarageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/GarageServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/GarageSpaceInfoFileReaderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/ParkingLotAllocatorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/VehicleInformationConverterImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/services/VehicleParkingLocationConverterServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/utils/AppUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/utils/AuthenticationUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/utils/NumberUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/utils/UrlUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/main/resources/files/garageSpaceInfo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/test/java/com/nrapendra/controllers/GarageControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/test/java/com/nrapendra/controllers/TestUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YsuraTask-master/src/test/resources/application.properties" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Nrapendra786&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Nrapendra786/GarageManagementApp.git&quot;,
+    &quot;accountId&quot;: &quot;e8bc7bdc-f8aa-4677-a269-40fccb5ed01c&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2iNfXnu5BkEXoebi27AXlsNUvPb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.GarageApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GarargeApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GarageControllerTest.enterVehicle.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GarageControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GarageControllerTest.exitVehicle.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GarageControllerTest.getAllFreeSpaces.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GarageControllerTest.getVehicleLocation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GarageControllerTest.getVehicleLocationWithWrongUserAndWrongPassword.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YsuraTask [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YsuraTask [clean,verify].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/triva/IdeaProjects/GarageManagementApp/YsuraTask-master/src/test/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\triva\IdeaProjects\GarageManagementApp\YsuraTask-master\src\test\resources" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.ysuratask.controllers" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.GarageControllerTest">
+    <configuration name="GarargeApplication" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.nrapendra.GarageApplication" />
+      <module name="YsuraTask" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GarageControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="YsuraTask" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nrapendra.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ysuratask.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.nrapendra.controllers.GarageControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GarageControllerTest.exitVehicle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="YsuraTask" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nrapendra.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.nrapendra.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.nrapendra.controllers.GarageControllerTest" />
+      <option name="METHOD_NAME" value="exitVehicle" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GarageControllerTest.getAllFreeSpaces" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="YsuraTask" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nrapendra.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ysuratask.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.nrapendra.controllers.GarageControllerTest" />
+      <option name="METHOD_NAME" value="getAllFreeSpaces" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GarageControllerTest.getVehicleLocation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="YsuraTask" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nrapendra.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ysuratask.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.nrapendra.controllers.GarageControllerTest" />
+      <option name="METHOD_NAME" value="getVehicleLocation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GarageControllerTest.getVehicleLocationWithWrongUserAndWrongPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="YsuraTask" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nrapendra.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ysuratask.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.nrapendra.controllers.GarageControllerTest" />
+      <option name="METHOD_NAME" value="getVehicleLocationWithWrongUserAndWrongPassword" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="GarageManagementApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="GarageManagementApp" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.GarargeApplication" />
+      <item itemvalue="JUnit.GarageControllerTest.exitVehicle" />
+      <item itemvalue="JUnit.GarageControllerTest" />
+      <item itemvalue="JUnit.GarageControllerTest.getAllFreeSpaces" />
+      <item itemvalue="JUnit.GarageControllerTest.getVehicleLocation" />
+      <item itemvalue="JUnit.GarageControllerTest.getVehicleLocationWithWrongUserAndWrongPassword" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.GarageControllerTest" />
+        <item itemvalue="JUnit.GarageControllerTest.exitVehicle" />
+        <item itemvalue="JUnit.GarageControllerTest.getAllFreeSpaces" />
+        <item itemvalue="JUnit.GarageControllerTest.getVehicleLocationWithWrongUserAndWrongPassword" />
+        <item itemvalue="JUnit.GarageControllerTest.getVehicleLocation" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0ec4fd3a-9274-4f14-8b74-391cddc24e10" name="Changes" comment="" />
+      <created>1719336001735</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1719336001735</updated>
+    </task>
+    <task id="LOCAL-00001" summary="fixed dependency issues, updated security config.">
+      <option name="closed" value="true" />
+      <created>1719414571538</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719414571538</updated>
+    </task>
+    <task id="LOCAL-00002" summary=" Added h2-db and Written Integration Test for">
+      <option name="closed" value="true" />
+      <created>1719443240964</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1719443240964</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed dependency issues, updated security config." />
+    <MESSAGE value=" Added h2-db and Written Integration Test for" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Added h2-db and Written Integration Test for" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/YsuraTask-master/src/main/java/com/nrapendra/models/FreeParkingGarageSpace.java</url>
+          <line>13</line>
+          <properties field="parkingSpaceStatus" class="com.nrapendra.models.FreeParkingGarageSpace" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/YsuraTask-master/src/test/java/com/nrapendra/controllers/GarageControllerTest.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/YsuraTask-master/src/test/java/com/nrapendra/controllers/GarageControllerTest.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/YsuraTask-master/src/test/java/com/nrapendra/controllers/GarageControllerTest.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/YsuraTask-master/src/test/java/com/nrapendra/controllers/GarageControllerTest.java</url>
+          <line>119</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
