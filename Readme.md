@@ -8,10 +8,10 @@ Functionalities are as follows:
 3) Roles based authentication for example USER and MANAGER
 
 How to use after git clone
-1) Docker must be installed in system
+1) Java 17 or higher and Docker must be installed in system
 2) open cmd
 3) cd Path to Project
-4) docker-compose up
+4) docker-compose up 
 5) mvn spring-boot:run
 
 Learning Outcome :
