@@ -20,6 +20,8 @@
         <jackson.mapper.asl.version>1.7.1</jackson.mapper.asl.version>
         <mysql-version>8.2.0</mysql-version>
         <joda-time-version>2.8.1</joda-time-version>
+        <sonar.organization>nrapendra786</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
