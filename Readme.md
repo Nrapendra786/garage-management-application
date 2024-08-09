@@ -1,4 +1,4 @@
-I wrote this service some time ago and purpose of this Service was to
+I wrote this service some time ago and purpose of this service was to
 create a Garage Management System. I updated this service with Spring boot 3.2.1 
 and updated some spring security features.
 
