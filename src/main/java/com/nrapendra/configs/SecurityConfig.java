@@ -18,11 +18,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
  */
 
 @Configuration
-public class SecurityConfig  {
+public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests(authorizeRequests ->
+        http.authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(UrlUtil.GARAGE_ENTER_VEHICLE_URL).permitAll()
                                 .requestMatchers(UrlUtil.GARAGE_EXIT_VEHICLE_ALL_URL).permitAll()
