@@ -12,7 +12,6 @@ public record VehicleParkingLocation( int levelNumber, int parkingLotNumber){
         return levelNumber;
     }
 
-
     public int getParkingLotNumber() {
         return parkingLotNumber;
     }
