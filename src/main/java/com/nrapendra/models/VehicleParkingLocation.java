@@ -5,14 +5,15 @@ import lombok.*;
 /**
  * Created by NrapendraKumar
  */
-
-
-@Getter
-@Setter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class VehicleParkingLocation {
-    private int levelNumber;
-    private int parkingLotNumber;
+public record VehicleParkingLocation( int levelNumber, int parkingLotNumber){
+
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+
+
+    public int getParkingLotNumber() {
+        return parkingLotNumber;
+    }
 }

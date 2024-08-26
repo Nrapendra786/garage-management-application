@@ -219,7 +219,6 @@ class GarageControllerTest {
                 .levelNumber(4)
                 .build();
         parkingVehicleLocationRespository.save(parkingVehicleLocation);
-
         VehicleInformation vehicleInformation = VehicleInformation
                 .builder()
                 .id(1L)

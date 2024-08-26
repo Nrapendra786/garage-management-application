@@ -6,11 +6,26 @@ import lombok.Setter;
 /**
  * Created by NrapendraKumar
  */
-@Setter
-@Getter
-public class FreeParkingGarageSpace {
+public record FreeParkingGarageSpace() {
 
-    private int noOfFreeParkingLot;
-    private String parkingSpaceStatus;
+    static int noOfFreeParkingLot;
+    static String parkingSpaceStatus;
 
+    public int getNoOfFreeParkingLot(){
+        return noOfFreeParkingLot;
+    }
+
+    public String getParkingSpaceStatus(){
+        return parkingSpaceStatus;
+    }
+
+    public void setNoOfFreeParkingLot(int _freeSpaceInGarage) {
+        noOfFreeParkingLot = _freeSpaceInGarage;
+    }
+
+    public void setParkingSpaceStatus(String _parkingSpaceStatus) {
+        parkingSpaceStatus = _parkingSpaceStatus;
+    }
 }
+
+

@@ -9,13 +9,15 @@ import lombok.Setter;
  * Created by NrapendraKumar
  */
 
-
-@Getter
-@Setter
 @Builder
-public class Vehicle  {
+public record Vehicle( VehicleType vehicleType, String vehicleNumber) {
 
-    private VehicleType vehicleType;
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
 
-    private String vehicleNumber;
+    public VehicleType vehicleType() {
+        return vehicleType;
+    }
+
 }

@@ -1,6 +1,7 @@
 com\nrapendra\repositories\ParkingVehicleLocationRespository.class
 com\nrapendra\utils\UrlUtil.class
 com\nrapendra\utils\AppUtil.class
+com\nrapendra\models\GarageSpaceInformation$GarageSpaceInformationBuilder.class
 com\nrapendra\enums\VehicleType.class
 com\nrapendra\services\VehicleInformationConverterImpl.class
 com\nrapendra\entities\VehicleInformation$VehicleInformationBuilder.class

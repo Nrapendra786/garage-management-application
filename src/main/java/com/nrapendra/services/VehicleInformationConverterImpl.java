@@ -31,7 +31,7 @@ public class VehicleInformationConverterImpl implements ConverterService<Vehicle
         VehicleInformation vehicleInformation = null;
         if (Objects.nonNull(parkingVehicleLocation)) {
             vehicleInformation = VehicleInformation.builder()
-                    .vehicleType(vehicle.getVehicleType())
+                    .vehicleType(vehicle.vehicleType())
                     .vehicleEnterDate(Date.from(Instant.now()))
                     .vehicleParkingLocation(parkingVehicleLocation)
                     .vehicleNumber(vehicle.getVehicleNumber())

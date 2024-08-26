@@ -32,10 +32,8 @@ public class GarageSpaceInfoFileReaderServiceImpl implements FileReaderService<G
                 while (Objects.nonNull(line)) {
                     line = bufferedReader.readLine();
                     if (Objects.nonNull(line)) {
-                        GarageSpaceInformation garageInformation = new GarageSpaceInformation();
                         String[] garageInfo = line.split(AppUtil.COMMA);
-                        garageInformation.setParkingLotPerLevel(Integer.parseInt(garageInfo[NumberUtil.ZERO]));
-                        garageInformation.setNoOfLevels(Integer.parseInt(garageInfo[NumberUtil.ONE]));
+                        GarageSpaceInformation garageInformation = new GarageSpaceInformation(Integer.parseInt(garageInfo[NumberUtil.ZERO]),Integer.parseInt(garageInfo[NumberUtil.ONE]));
                         garageInformationList.add(garageInformation);
                     }
                 }

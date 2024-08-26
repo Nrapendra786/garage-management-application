@@ -7,10 +7,19 @@ import org.springframework.stereotype.Component;
 /**
  * Created by NrapendraKumar
  */
-
 @Component
-@Setter
-@Getter
-public class VehicleMovementStatus {
-    private String status;
+public record VehicleMovementStatus(){
+    private static String status;
+
+    public static String getStatus() {
+        return status;
+    }
+
+    public static void setStatus(String status) {
+        VehicleMovementStatus.status = status;
+    }
+
+
+
+
 }
