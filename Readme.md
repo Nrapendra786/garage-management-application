@@ -11,8 +11,8 @@ How to use after git clone
 1) Java 17 or higher and Docker must be installed in system
 2) open cmd
 3) cd Path to Project
-4) docker-compose up 
-5) mvn spring-boot:run
+4) command to start the project : docker-compose up -d
+5) command to stop the project : docker-compose down 
 
 Learning Outcome :
 Java, Spring Web, Spring Security, Spring Data and Docker

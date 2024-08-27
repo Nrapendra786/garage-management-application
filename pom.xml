@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.nrapendra</groupId>
-    <artifactId>GarageManagementApplication</artifactId>
+    <artifactId>garage-management-application</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -18,8 +18,6 @@
         <java.version>17</java.version>
         <spring.test.version>4.2.3.RELEASE</spring.test.version>
         <jackson.mapper.asl.version>1.7.1</jackson.mapper.asl.version>
-        <mysql-version>8.2.0</mysql-version>
-        <joda-time-version>2.8.1</joda-time-version>
         <sonar.organization>nrapendra786</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
@@ -38,10 +36,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>${mysql-version}</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
