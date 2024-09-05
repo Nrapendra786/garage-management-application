@@ -4,7 +4,7 @@ and updated some spring security features.
 
 Functionalities are as follows:
 1) Types of vehicle can enter into the garage for example CAR and Motorbike.
-2) Find vehicle location in a multi-storeyed Building in a Garage.
+2) Find vehicle location in a multi-storeyed Garage.
 3) Roles based authentication for example USER and MANAGER.
 
 How to use after git clone
