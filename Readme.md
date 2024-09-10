@@ -3,7 +3,7 @@ create a Garage Management System. I updated this service with Spring boot 3.2.1
 and updated some spring security features.
 
 Functionalities are as follows:
-1) Types of vehicle can enter into the garage for example CAR and Motorbike.
+1) Types of vehicle can enter into the garage are CAR and Motorbike.
 2) Find vehicle location in a multi-storeyed Garage.
 3) Roles based authentication for example USER and MANAGER.
 
