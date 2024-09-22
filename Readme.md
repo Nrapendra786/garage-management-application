@@ -9,8 +9,7 @@ Recently, I updated the service to use Spring Boot 3.2.1 and incorporated some n
 ## How to use after cloning the repository:
 1) Java 17 or higher and Docker must be installed on the system. <br/>
 2) Open a command prompt. <br/>
-3) Navigate to the project directory: <br/>
-cd [path to project] git clone [https://github.com/Nrapendra786/garage-management-application.git](https://github.com/Nrapendra786/garage-management-application.git)
+3) Navigate to the project directory: cd [path to project] git clone [https://github.com/Nrapendra786/garage-management-application.git](https://github.com/Nrapendra786/garage-management-application.git)
 
 ## Command to start the project:
 docker-compose up -d
