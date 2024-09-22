@@ -1,18 +1,18 @@
 package com.nrapendra.controllers;
 
 import com.nrapendra.GarageApplication;
-import com.nrapendra.entities.ParkingVehicleLocation;
-import com.nrapendra.entities.VehicleInformation;
-import com.nrapendra.enums.VehicleType;
-import com.nrapendra.models.FreeParkingGarageSpace;
-import com.nrapendra.models.Vehicle;
-import com.nrapendra.models.VehicleMovementStatus;
-import com.nrapendra.models.VehicleParkingLocation;
-import com.nrapendra.repositories.ParkingVehicleLocationRespository;
-import com.nrapendra.repositories.VehicleRepository;
-import com.nrapendra.services.ConverterService;
-import com.nrapendra.services.GarageService;
-import com.nrapendra.utils.AppUtil;
+import com.nrapendra.garage.entities.ParkingVehicleLocation;
+import com.nrapendra.garage.entities.VehicleInformation;
+import com.nrapendra.garage.enums.VehicleType;
+import com.nrapendra.garage.models.FreeParkingGarageSpace;
+import com.nrapendra.garage.models.Vehicle;
+import com.nrapendra.garage.models.VehicleMovementStatus;
+import com.nrapendra.garage.models.VehicleParkingLocation;
+import com.nrapendra.garage.repositories.ParkingVehicleLocationRepository;
+import com.nrapendra.garage.repositories.VehicleRepository;
+import com.nrapendra.garage.services.ConverterService;
+import com.nrapendra.garage.services.GarageService;
+import com.nrapendra.garage.utils.AppUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -53,11 +53,11 @@ class GarageControllerTest {
     private VehicleRepository vehicleRepository;
 
     @Autowired
-    private ParkingVehicleLocationRespository parkingVehicleLocationRespository;
+    private ParkingVehicleLocationRepository parkingVehicleLocationRespository;
 
     @Autowired
     @Qualifier(AppUtil.VEHICLE_INFORMATION_CONVERTER)
-    private ConverterService vehicleInformationConverterService;
+    private ConverterService<VehicleInformation, Vehicle> vehicleInformationConverterService;
 
     private String getRootUrl() {
         return "http://localhost:" + port;

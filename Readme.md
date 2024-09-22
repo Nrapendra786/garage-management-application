@@ -1,18 +1,42 @@
-I wrote this service some time ago and purpose of this service was to
-create a Garage Management System. I updated this service with Spring boot 3.2.1 
-and updated some spring security features.
+I developed this service some time ago with the purpose of creating a Garage Management System. 
+Recently, I updated the service to use Spring Boot 3.2.1 and incorporated some new features.
 
-Functionalities are as follows:
-1) Types of vehicle can enter into the garage are CAR and Motorbike.
-2) Find vehicle location in a multi-storeyed Garage.
-3) Roles based authentication for example USER and MANAGER.
+#Functionalities:
+The types of vehicles that can enter the garage are Car and Motorbike.
+Locate vehicles in a multi-storey garage.
+Role-based authentication, e.g., USER and MANAGER roles.
 
-How to use after git clone
-1) Java 17 or higher and Docker must be installed in system
-2) open cmd
-3) cd Path to Project
-4) command to start the project : docker-compose up -d
-5) command to stop the project : docker-compose down 
+#How to use after cloning the repository:
+Java 17 or higher and Docker must be installed on the system.
+Open a command prompt.
+Navigate to the project directory:
+cd [path to project]
 
-Learning Outcome :
-Java, Spring Web, Spring Security, Spring Data and Docker
+#To start the project:
+docker-compose up -d
+
+#To stop the project:
+docker-compose down or docker-compose down --rmi all
+
+#Profiles:
+The project supports two profiles, and the commands to use them are as follows:
+
+1) H2 database (active by default):
+mvn clean package -P h2db
+2) PostgreSQL database:
+mvn clean package -P postgresdb
+
+Note: Docker must be running. After executing docker-compose up -d, you can run the above command.
+
+Accessing Swagger UI:
+
+To access Swagger UI, go to:
+http://[hostname]:[portnumber]/[api-context]/swagger-ui.html
+
+#Learning Outcomes:
+
+Java
+Spring Web
+Spring Security
+Spring Data
+Docker
