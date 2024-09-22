@@ -12,10 +12,10 @@ Open a command prompt.
 Navigate to the project directory:
 cd [path to project]
 
-# Command start the project:
+# Command to start the project:
 docker-compose up -d
 
-# Command stop the project:
+# Command to stop the project:
 docker-compose down or docker-compose down --rmi all
 
 ## Profiles:
