@@ -26,7 +26,7 @@ This project supports two profiles, and the commands to use them are as follows:
   2) PostgreSQL database:
      mvn clean package -P postgresdb
 
-Note: Docker must be running. After executing docker-compose up -d, you can run the above command.
+Note: Docker must be running. After executing docker-compose up -d, you can run the above command mentioned in step 2.
 
 ## Accessing Swagger UI:
 
