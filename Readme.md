@@ -12,10 +12,10 @@ Recently, I updated the service to use Spring Boot 3.2.1 and incorporated some n
 3) Navigate to the project directory: cd [path to project] git clone [https://github.com/Nrapendra786/garage-management-application.git](https://github.com/Nrapendra786/garage-management-application.git)
 
 ## Command to start the project:
-docker-compose up -d
+   docker-compose up -d
 
 ## Command to stop the project:
-docker-compose down or docker-compose down --rmi all
+   docker-compose down 
 
 ## Profiles:
 The project supports two profiles, and the commands to use them are as follows:
