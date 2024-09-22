@@ -2,9 +2,9 @@ I developed this service some time ago with the purpose of creating a Garage Man
 Recently, I updated the service to use Spring Boot 3.2.1 and incorporated some new features.
 
 ## Functionalities:
-# The types of vehicles that can enter the garage are Car and Motorbike. <br/>
-# Locate vehicles in a multi-storey garage.
-# Role-based authentication, e.g., USER and MANAGER roles.
+1) The types of vehicles that can enter the garage are Car and Motorbike. <br/>
+2) Locate vehicles in a multi-storey garage.
+3) Role-based authentication, e.g., USER and MANAGER roles.
 
 ## How to use after cloning the repository:
 Java 17 or higher and Docker must be installed on the system.
