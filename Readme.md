@@ -12,10 +12,10 @@ Open a command prompt.
 Navigate to the project directory:
 cd [path to project]
 
-# Command to start the project:
+## Command to start the project:
 docker-compose up -d
 
-# Command to stop the project:
+## Command to stop the project:
 docker-compose down or docker-compose down --rmi all
 
 ## Profiles:
@@ -34,9 +34,11 @@ To access Swagger UI, go to:
 http://[hostname]:[portnumber]/[api-context]/swagger-ui.html
 
 ## Learning Outcomes:
-Java
-Spring Web
-Spring Security
-Spring Data
-Swagger-UI/OpenAPI
-Docker
+1) Java <br/>
+2) Spring Web <br/>
+3) Spring Security <br/>
+4) Spring Data <br/>
+5) Swagger-UI/OpenAPI <br/>
+6) Docker/Docker-Compose <br/>
+7) Maven Profiles <br/>
+8) H2/Postgres SQL <br/>
