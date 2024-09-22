@@ -20,12 +20,11 @@ Recently, I updated the service to use Spring Boot 3.2.1 and incorporated some n
    docker-compose down 
 
 ## Profiles:
-The project supports two profiles, and the commands to use them are as follows:
-
-1) H2 database (active by default):
-mvn clean package -P h2db
-2) PostgreSQL database:
-mvn clean package -P postgresdb
+This project supports two profiles, and the commands to use them are as follows:
+  1) H2 database (active by default):
+     mvn clean package -P h2db
+  2) PostgreSQL database:
+     mvn clean package -P postgresdb
 
 Note: Docker must be running. After executing docker-compose up -d, you can run the above command.
 
