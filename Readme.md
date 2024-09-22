@@ -7,10 +7,10 @@ Recently, I updated the service to use Spring Boot 3.2.1 and incorporated some n
 3) Role-based authentication, e.g., USER and MANAGER roles.
 
 ## How to use after cloning the repository:
-Java 17 or higher and Docker must be installed on the system.
-Open a command prompt.
-Navigate to the project directory:
-cd [path to project]
+Java 17 or higher and Docker must be installed on the system. <br/>
+Open a command prompt. <br/>
+Navigate to the project directory: <br/>
+cd [path to project] git clone [https://github.com/Nrapendra786/garage-management-application.git](https://github.com/Nrapendra786/garage-management-application.git)
 
 ## Command to start the project:
 docker-compose up -d
