@@ -6,7 +6,7 @@ Recently, I updated the service to use Spring Boot 3.2.1 and incorporated some n
 2) Locate vehicles in a multi-storey garage.
 3) Role-based authentication, e.g., USER and MANAGER roles.
 
-## How to use :
+## How to use:
 1) Java 17 or higher Java version and Docker must be installed on the system. In case docker is not available then use profile h2db, which is configured by default <br/>
 2) Docker must be running in the system. <br/>
 3) Open a command prompt. <br/>
