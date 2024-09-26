@@ -23,7 +23,7 @@ import java.text.ParseException;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class GarageController {
+public class GarageController extends OpenAPIController {
 
     private final GarageService garageService;
 
