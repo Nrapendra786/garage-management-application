@@ -33,7 +33,7 @@ Note: Docker must be running. After executing docker-compose up -d, you can run 
 To access Swagger UI, go to:
 http://[hostname]:[portnumber]/[api-context]/swagger-ui.html
 
-## Learning Outcomes:
+## Technologies:
 1) Java <br/>
 2) Spring Web <br/>
 3) Spring Security <br/>
