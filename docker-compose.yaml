@@ -1,10 +1,16 @@
+networks:
+  springboot-network:
+    driver: bridge
 services:
   app:
     build:
       context: .
+      dockerfile: Dockerfile
     container_name: app
+    networks:
+      - springboot-network
     depends_on:
-      - db
+      - postgres-database
     environment:
       - POSTGRES_USER=${POSTGRES_USERNAME}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -12,11 +18,12 @@ services:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+      - SERVER_ADDRESS=0.0.0.0
     ports:
-      - "6868:8080"
-  db:
+      - "8082:8082"
+  postgres-database:
     image: postgres
-    container_name: db
+    container_name: postgres-database
     environment:
       - POSTGRES_USER=${POSTGRES_USERNAME}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

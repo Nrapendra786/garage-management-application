@@ -8,14 +8,12 @@ RUN mvn dependency:go-offline -B
 
 COPY src ./src
 
-RUN mvn clean package
+RUN mvn clean package -P postgresdb
 
 FROM openjdk:21-jdk AS runner
 
 WORKDIR /app
 
 COPY --from=builder ./app/target/*.jar ./app.jar
-
-EXPOSE 8090
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
