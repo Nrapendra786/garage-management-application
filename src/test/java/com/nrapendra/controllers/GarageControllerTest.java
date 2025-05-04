@@ -13,18 +13,14 @@ import com.nrapendra.garage.repositories.VehicleRepository;
 import com.nrapendra.garage.services.ConverterService;
 import com.nrapendra.garage.services.GarageService;
 import com.nrapendra.garage.utils.AppUtil;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.net.URI;
@@ -44,16 +40,16 @@ class GarageControllerTest {
     private int port;
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private GarageService garageService;
 
     @Autowired
-    private GarageService garageService;
+    private ParkingVehicleLocationRepository parkingVehicleLocationRespository;
 
     @Autowired
     private VehicleRepository vehicleRepository;
 
     @Autowired
-    private ParkingVehicleLocationRepository parkingVehicleLocationRespository;
+    private TestRestTemplate testRestTemplate;
 
     @Autowired
     @Qualifier(AppUtil.VEHICLE_INFORMATION_CONVERTER)
@@ -76,13 +72,13 @@ class GarageControllerTest {
 
         //when
         ResponseEntity<VehicleMovementStatus> postResponse =
-                restTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
+                testRestTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
 
         //then
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(postResponse.getBody().getStatus(), VEHICLE_ENTERED);
-        assertEquals(postResponse.getStatusCode(),HttpStatusCode.valueOf(200));
+        assertEquals(VEHICLE_ENTERED, postResponse.getBody().getStatus());
+        assertEquals(HttpStatus.OK, postResponse.getStatusCode());
     }
 
     @Test
@@ -91,17 +87,16 @@ class GarageControllerTest {
         Vehicle vehicle = vehicle();
 
         //when
-        restTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
+        testRestTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
         ResponseEntity<VehicleMovementStatus> postResponse =
-                restTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
+                testRestTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
 
         //then
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(postResponse.getBody().getStatus(), VEHICLE_ALREADY_EXIST);
-        assertEquals(postResponse.getStatusCode(),HttpStatusCode.valueOf(200));
+        assertEquals(VEHICLE_ALREADY_EXIST, postResponse.getBody().getStatus());
+        assertEquals(HttpStatus.OK, postResponse.getStatusCode());
     }
-
 
     @Test
     void exitVehicle() {
@@ -109,8 +104,8 @@ class GarageControllerTest {
         Vehicle vehicle = vehicle();
 
         //when
-        restTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
-        ResponseEntity<VehicleMovementStatus> deleteResponse = restTemplate.
+        testRestTemplate.postForEntity(getRootUrl() + GARAGE_ENTER_VEHICLE_URL, vehicle, VehicleMovementStatus.class);
+        ResponseEntity<VehicleMovementStatus> deleteResponse = testRestTemplate.
                 exchange(URI.create(getRootUrl() + GARAGE_EXIT_VEHICLE_URL + vehicle.getVehicleNumber()),
                         HttpMethod.DELETE,
                         HttpEntity.EMPTY,
@@ -119,8 +114,8 @@ class GarageControllerTest {
         //then
         assertNotNull(deleteResponse);
         assertNotNull(deleteResponse.getBody());
-        assertEquals(deleteResponse.getBody().getStatus(),VEHICLE_EXITED);
-        assertEquals(deleteResponse.getStatusCode(),HttpStatusCode.valueOf(200));
+        assertEquals(VEHICLE_EXITED, deleteResponse.getBody().getStatus());
+        assertEquals(HttpStatus.OK, deleteResponse.getStatusCode());
     }
 
     @Test
@@ -129,7 +124,7 @@ class GarageControllerTest {
         Vehicle vehicle = vehicle();
 
         //when
-        ResponseEntity<VehicleMovementStatus> deleteResponse = restTemplate.
+        ResponseEntity<VehicleMovementStatus> deleteResponse = testRestTemplate.
                 exchange(URI.create(getRootUrl() + GARAGE_EXIT_VEHICLE_URL + vehicle.getVehicleNumber()),
                         HttpMethod.DELETE,
                         HttpEntity.EMPTY,
@@ -138,8 +133,8 @@ class GarageControllerTest {
         //then
         assertNotNull(deleteResponse);
         assertNotNull(deleteResponse.getBody());
-        assertEquals(deleteResponse.getBody().getStatus(),VEHICLE_DOES_NOT_EXIST);
-        assertEquals(deleteResponse.getStatusCode(),HttpStatusCode.valueOf(200));
+        assertEquals(VEHICLE_DOES_NOT_EXIST, deleteResponse.getBody().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND, deleteResponse.getStatusCode());
     }
 
     @Test
@@ -151,7 +146,7 @@ class GarageControllerTest {
 
         //when
         ResponseEntity<VehicleParkingLocation> getResponse =
-                restTemplate
+                testRestTemplate
                         .withBasicAuth(TestUtil.CORRECT_USER, TestUtil.CORRECT_PASSWORD)
                         .getForEntity(URI.create(getRootUrl() + GARAGE_GET_VEHICLE_LOCATION_URL + vehicle.getVehicleNumber()), VehicleParkingLocation.class);
 
@@ -159,8 +154,8 @@ class GarageControllerTest {
         assertNotNull(getResponse);
         assertNotNull(getResponse.getBody());
         assertEquals(getResponse.getStatusCode(), HttpStatusCode.valueOf(200));
-        assertEquals(Objects.requireNonNull(getResponse.getBody()).getLevelNumber(), 4);
-        assertEquals(Objects.requireNonNull(getResponse.getBody()).getParkingLotNumber(), 2);
+        assertEquals(4, Objects.requireNonNull(getResponse.getBody()).getLevelNumber());
+        assertEquals(2, Objects.requireNonNull(getResponse.getBody()).getParkingLotNumber());
     }
 
     @Test
@@ -171,19 +166,19 @@ class GarageControllerTest {
 
         //when
         ResponseEntity<VehicleParkingLocation> getResponse =
-                restTemplate
+                testRestTemplate
                         .withBasicAuth(TestUtil.INCORRECT_USER, TestUtil.INCORRECT_PASSWORD)
                         .getForEntity(URI.create(getRootUrl() + GARAGE_GET_VEHICLE_LOCATION_URL + vehicle.getVehicleNumber()), VehicleParkingLocation.class);
         //then
         assertNotNull(getResponse);
-        assertEquals(getResponse.getStatusCode(), HttpStatusCode.valueOf(401));
+        assertEquals(HttpStatus.UNAUTHORIZED, getResponse.getStatusCode());
     }
 
     @Test
     void getAllFreeSpacesWithCorrectUsernameAndCorrectPassword() {
         //when
         ResponseEntity<FreeParkingGarageSpace> getResponse =
-                restTemplate
+                testRestTemplate
                         .withBasicAuth(TestUtil.CORRECT_USER, TestUtil.CORRECT_PASSWORD)
                         .getForEntity(URI.create(getRootUrl() + GARAGE_FREE_SPACE_URL ),FreeParkingGarageSpace.class);
 
@@ -191,20 +186,20 @@ class GarageControllerTest {
         assertNotNull(getResponse);
         assertEquals(getResponse.getStatusCode(), HttpStatusCode.valueOf(200));
         assertNotNull(getResponse.getBody());
-        assertEquals(getResponse.getBody().getNoOfFreeParkingLot(), 10);
-        assertEquals(getResponse.getBody().getParkingSpaceStatus(), PARKING_SPACE_AVAILABLE);
+        assertEquals(10, getResponse.getBody().getNoOfFreeParkingLot());
+        assertEquals(PARKING_SPACE_AVAILABLE, getResponse.getBody().getParkingSpaceStatus());
     }
 
     @Test
     void getAllFreeSpacesWithInCorrectUsernameAndInCorrectPassword() {
         //when
         ResponseEntity<FreeParkingGarageSpace> getResponse =
-                restTemplate
+                testRestTemplate
                         .withBasicAuth(TestUtil.INCORRECT_USER, TestUtil.INCORRECT_PASSWORD)
                         .getForEntity(URI.create(getRootUrl() + GARAGE_FREE_SPACE_URL ),FreeParkingGarageSpace.class);
         //then
         assertNotNull(getResponse);
-        assertEquals(getResponse.getStatusCode(), HttpStatusCode.valueOf(401));
+        assertEquals(HttpStatus.UNAUTHORIZED, getResponse.getStatusCode());
     }
 
     private Vehicle vehicle() {

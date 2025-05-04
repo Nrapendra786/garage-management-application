@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Created by NrapendraKumar
@@ -27,10 +28,14 @@ import java.util.Objects;
 public class GarageServiceImpl implements GarageService {
 
     private final VehicleMovementStatus vehicleMovementStatus;
+
     private final VehicleRepository vehicleRepository;
+
     private final ParkingLotAllocatorService parkingLotAllocatorService;
     private final FileReaderService<GarageSpaceInformation> garageSpaceFileReaderServiceImpl;
+
     private final ParkingVehicleLocationRepository parkingVehicleLocationRepository;
+
     private final ConverterService<VehicleInformation, Vehicle> vehicleInformationConverterService;
     private final ConverterService<VehicleParkingLocation, ParkingVehicleLocation> vehicleParkingLocationConverterService;
 
@@ -50,7 +55,6 @@ public class GarageServiceImpl implements GarageService {
         this.vehicleInformationConverterService = vehicleInformationConverterService;
         this.vehicleParkingLocationConverterService = vehicleParkingLocationConverterService;
     }
-
 
     @Override
     public VehicleMovementStatus addVehicle(Vehicle vehicle) throws IOException, ParseException {
@@ -72,23 +76,23 @@ public class GarageServiceImpl implements GarageService {
 
     @Override
     public VehicleMovementStatus removeVehicle(String vehicleNumber) throws IOException, ParseException {
-        VehicleInformation vehicleInformation = vehicleRepository.findByVehicleNumber(vehicleNumber);
-        if (Objects.isNull(vehicleInformation)) {
+        Optional<VehicleInformation> vehicleInformation = vehicleRepository.findByVehicleNumber(vehicleNumber);
+        if (vehicleInformation.isEmpty()) {
             vehicleMovementStatus.setStatus(AppUtil.VEHICLE_DOES_NOT_EXIST);
         } else {
             vehicleMovementStatus.setStatus(AppUtil.VEHICLE_EXITED);
-            vehicleRepository.delete(vehicleInformation);
+            vehicleRepository.delete(vehicleInformation.get());
         }
         return vehicleMovementStatus;
     }
 
     @Override
     public VehicleParkingLocation getVehicleParkingLocation(String vehicleNumber) throws ParseException, FileException {
-        VehicleInformation vehicleInformation = vehicleRepository.findByVehicleNumber(vehicleNumber);
-        if (Objects.isNull(vehicleInformation)) {
+        Optional<VehicleInformation> vehicleInformation = vehicleRepository.findByVehicleNumber(vehicleNumber);
+        if (vehicleInformation.isEmpty()) {
             throw new NotFoundException(AppUtil.VEHICLE_DOES_NOT_EXIST);
         }
-        ParkingVehicleLocation parkingVehicleLocation = vehicleInformation.getVehicleParkingLocation();
+        ParkingVehicleLocation parkingVehicleLocation = vehicleInformation.get().getVehicleParkingLocation();
         return vehicleParkingLocationConverterService.convert(parkingVehicleLocation);
     }
 
@@ -129,6 +133,6 @@ public class GarageServiceImpl implements GarageService {
     }
 
     private boolean isVehicleAlreadyExist(String vehicleNumber) {
-        return Objects.isNull(vehicleRepository.findByVehicleNumber(vehicleNumber));
+        return vehicleRepository.findByVehicleNumber(vehicleNumber).isEmpty();
     }
 }
