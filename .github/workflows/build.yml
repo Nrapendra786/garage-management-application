@@ -48,7 +48,7 @@ jobs:
         run: ls -la ./  # Adjust path as necessary
 
       # Build the Docker image
-      - name: Build Docker Image for waste management application
+      - name: Build Docker Image for garage management application
         run: cd garage-management-application && docker build -t ${{ secrets.DOCKER_USERNAME }}/garage-app .
 
       # Push the Docker image to Docker Hub
