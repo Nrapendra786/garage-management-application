@@ -49,7 +49,7 @@ jobs:
 
       # Build the Docker image
       - name: Build Docker Image for garage management application
-        run: cd garage-management-application && docker build -t ${{ secrets.DOCKER_USERNAME }}/garage-app .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/garage-app .
 
       # Push the Docker image to Docker Hub
       - name: Push Docker Image to Docker Hub
