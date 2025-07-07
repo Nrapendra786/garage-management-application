@@ -151,7 +151,7 @@ jobs:
 
       # ---------- Dependency / OSS scan ----------
       - name: Snyk Open Source scan
-        uses: snyk/actions/maven@v3
+        uses: snyk/actions@v4
         with:
           args: --all-sub-projects --severity-threshold=high
         continue-on-error: true   # warn in PRs, don’t block
@@ -159,7 +159,7 @@ jobs:
       # ---------- Container-layer scan ----------
       - name: Snyk Container scan
         id: snyk-container
-        uses: snyk/actions/docker@v3
+        uses: snyk/actions@v4
         with:
           image: ${{ env.REGISTRY_USER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           args: --file=Dockerfile --severity-threshold=high
