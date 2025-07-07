@@ -1,0 +1,225 @@
+name: CI - Build, Scan and Publish
+
+# Trigger on pushes to default branch and on any PR targeting it
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# Cancel previous runs on the same ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/.m2"
+  IMAGE_NAME: garage-app           # single source of truth
+  REGISTRY_USER: ${{ secrets.DOCKER_USERNAME }}
+  REGISTRY: docker.io
+
+jobs:
+  security-snyk:
+    needs: docker          # wait for image so we can scan it, too
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write   # needed for SARIF upload
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  # 1) Build, unit-test & SonarCloud analysis
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read           # required by checkout
+      pull-requests: read      # PR decoration for Sonar
+      checks: write            # allow SARIF upload
+      id-token: write          # OIDC for registry login (future-proof)
+
+    strategy:
+      matrix:
+        java: [ 17 ]           # add more JDKs easily
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0               # full history for Sonar
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: temurin
+          cache: maven                # built-in dependency cache
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar-${{ hashFiles('**/*.xml') }}
+          restore-keys: ${{ runner.os }}-sonar-
+
+      - name: Build, Test & Sonar Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn -B verify \
+              sonar:sonar \
+              -Dsonar.token=$SONAR_TOKEN \
+              -Dsonar.projectKey=Nrapendra786_garage-management-application \
+              -Dsonar.organization=nrapendra786
+
+      # Optional: surface code-scanning alerts inside GitHub
+      - name: Upload Sonar SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: target/sonar/report.sarif
+
+      - name: Archive built JAR
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-jar
+          path: target/*.jar
+          retention-days: 1
+
+
+  # 2) Build & push Docker image (only after build job succeeds, and only on mainline)
+  docker:
+    needs: build-and-scan
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write     # for GHCR; not needed for Docker Hub
+      id-token: write     # for OIDC login
+
+    steps:
+      - name: Checkout (shallow)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Download Jar Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-jar
+          path: target
+
+      # Enable Buildx and leverage cache to speed up incremental builds
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-buildx-
+
+      - name: Login to Docker Hub using OIDC  # classic username/pass fallback shown below
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & Push (multi-arch)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ env.REGISTRY_USER }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY_USER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+
+      # Move the cache for next run
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#name: SonarCloud
+#on:
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    types: [opened, synchronize, reopened]
+#jobs:
+#  build:
+#    name: Build and analyze
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: 17
+#          distribution: 'zulu' # Alternative distribution options are available.
+#      - name: Cache SonarCloud packages
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar
+#          restore-keys: ${{ runner.os }}-sonar
+#      - name: Cache Maven packages
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.m2
+#          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: ${{ runner.os }}-m2
+#      - name: Build and analyze
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
+#        run: mvn -B verify
+#      - name: Log in to Docker Hub
+#        uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#
+#      # Set up Docker Build for multi-platform builds
+#      - name: Set up Docker Buildx
+#        uses: docker/setup-buildx-action@v3
+#
+#      - name: Debug File Listing
+#        run: ls -la ./  # Adjust path as necessary
+#
+#      # Build and Tag the Docker image
+#      - name: Build Docker Image for garage management application
+#        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/garage-app .
+#
+#      # Push the Docker image to Docker Hub
+#      - name: Push Docker Image to Docker Hub
+#        run: docker push ${{ secrets.DOCKER_USERNAME }}/garage-app
+#
+#      # Log out of Docker Hub
+#      - name: Log out of Docker Hub
+#        run: docker logout
