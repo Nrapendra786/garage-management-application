@@ -10,7 +10,7 @@ COPY src ./src
 
 RUN mvn clean package -P postgresdb
 
-FROM openjdk:17-jdk-alpine AS runner
+FROM openjdk:21-jdk AS runner
 
 WORKDIR /app
 
